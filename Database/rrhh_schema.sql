@@ -41,7 +41,19 @@ CREATE TABLE public.alumno_tbl (
     id integer NOT NULL,
     name character varying(30) NOT NULL,
     lastname character varying(30) NOT NULL,
-    dni integer NOT NULL
+    dni integer NOT NULL,
+    afiliado integer,
+    dateadded date,
+    domicilio character varying(50),
+    telefono numeric,
+    celular numeric,
+    estadocivil character varying(25),
+    grupofliar integer,
+    estudios character varying(35),
+    area character varying(35),
+    funcion character varying(35),
+    categoria character varying(35),
+    agrupamiento character varying(35)
 );
 
 
@@ -82,7 +94,8 @@ CREATE TABLE public.comprobante_tbl (
     id_alumno integer NOT NULL,
     estado integer DEFAULT 0,
     dateadded date,
-    datepayed date
+    datepayed date,
+    novedad text
 );
 
 
