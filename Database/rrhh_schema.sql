@@ -38,7 +38,7 @@ SET default_with_oids = false;
 --
 
 CREATE TABLE public.alumno_tbl (
-    id integer NOT NULL,
+    id integer DEFAULT nextval('alumno_id_seq'::regclass) NOT NULL,
     name character varying(30) NOT NULL,
     lastname character varying(30) NOT NULL,
     dni integer NOT NULL,
@@ -63,7 +63,7 @@ ALTER TABLE public.alumno_tbl OWNER TO postgres;
 -- Name: alumno_tbl_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.alumno_tbl_id_seq
+CREATE SEQUENCE public.alumno_id_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -72,13 +72,13 @@ CREATE SEQUENCE public.alumno_tbl_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.alumno_tbl_id_seq OWNER TO postgres;
+ALTER TABLE public.alumno_id_seq OWNER TO postgres;
 
 --
 -- Name: alumno_tbl_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.alumno_tbl_id_seq OWNED BY public.alumno_tbl.id;
+ALTER SEQUENCE public.alumno_id_seq OWNED BY public.alumno_tbl.id;
 
 
 --
@@ -86,7 +86,7 @@ ALTER SEQUENCE public.alumno_tbl_id_seq OWNED BY public.alumno_tbl.id;
 --
 
 CREATE TABLE public.comprobante_tbl (
-    id integer NOT NULL,
+    id integer DEFAULT nextval('comprobante_id_seq'::regclass) NOT NULL,
     legajo integer NOT NULL,
     concept text NOT NULL,
     unit_amount numeric NOT NULL,
@@ -105,7 +105,7 @@ ALTER TABLE public.comprobante_tbl OWNER TO postgres;
 -- Name: comprobante_tbl_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.comprobante_tbl_id_seq
+CREATE SEQUENCE public.comprobante_id_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -114,13 +114,13 @@ CREATE SEQUENCE public.comprobante_tbl_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.comprobante_tbl_id_seq OWNER TO postgres;
+ALTER TABLE public.comprobante_id_seq OWNER TO postgres;
 
 --
 -- Name: comprobante_tbl_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.comprobante_tbl_id_seq OWNED BY public.comprobante_tbl.id;
+ALTER SEQUENCE public.comprobante_id_seq OWNED BY public.comprobante_tbl.id;
 
 
 --
@@ -128,7 +128,7 @@ ALTER SEQUENCE public.comprobante_tbl_id_seq OWNED BY public.comprobante_tbl.id;
 --
 
 CREATE TABLE public.config_tbl (
-    id integer NOT NULL,
+    id integer DEFAULT nextval('config_id_seq'::regclass) NOT NULL,
     valorcuota integer,
     cuenta integer
 );
@@ -140,7 +140,7 @@ ALTER TABLE public.config_tbl OWNER TO postgres;
 -- Name: config_tbl_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.config_tbl_id_seq
+CREATE SEQUENCE public.config_id_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -149,13 +149,13 @@ CREATE SEQUENCE public.config_tbl_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.config_tbl_id_seq OWNER TO postgres;
+ALTER TABLE public.config_id_seq OWNER TO postgres;
 
 --
 -- Name: config_tbl_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.config_tbl_id_seq OWNED BY public.config_tbl.id;
+ALTER SEQUENCE public.config_id_seq OWNED BY public.config_tbl.id;
 
 
 --
@@ -191,21 +191,21 @@ ALTER TABLE public.user_tbl OWNER TO postgres;
 -- Name: alumno_tbl id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.alumno_tbl ALTER COLUMN id SET DEFAULT nextval('public.alumno_tbl_id_seq'::regclass);
+ALTER TABLE ONLY public.alumno_tbl ALTER COLUMN id SET DEFAULT nextval('public.alumno_id_seq'::regclass);
 
 
 --
 -- Name: comprobante_tbl id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.comprobante_tbl ALTER COLUMN id SET DEFAULT nextval('public.comprobante_tbl_id_seq'::regclass);
+ALTER TABLE ONLY public.comprobante_tbl ALTER COLUMN id SET DEFAULT nextval('public.comprobante_id_seq'::regclass);
 
 
 --
 -- Name: config_tbl id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.config_tbl ALTER COLUMN id SET DEFAULT nextval('public.config_tbl_id_seq'::regclass);
+ALTER TABLE ONLY public.config_tbl ALTER COLUMN id SET DEFAULT nextval('public.config_id_seq'::regclass);
 
 
 --

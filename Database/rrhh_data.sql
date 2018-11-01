@@ -61,7 +61,7 @@ INSERT INTO public.user_tbl (id, username, password, email, type) VALUES (15, 'i
 -- Name: alumno_tbl_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.alumno_tbl_id_seq', 11, true);
+SELECT pg_catalog.setval('public.alumno_id_seq', 11, true);
 
 
 --
@@ -70,7 +70,7 @@ SELECT pg_catalog.setval('public.alumno_tbl_id_seq', 11, true);
 -- Name: comprobante_tbl_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.comprobante_tbl_id_seq', 220, true);
+SELECT pg_catalog.setval('public.comprobante_id_seq', 220, true);
 
 
 --
@@ -79,7 +79,7 @@ SELECT pg_catalog.setval('public.comprobante_tbl_id_seq', 220, true);
 -- Name: config_tbl_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.config_tbl_id_seq', 1, true);
+SELECT pg_catalog.setval('public.config_id_seq', 1, true);
 
 
 --
