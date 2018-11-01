@@ -36,9 +36,20 @@ SET default_with_oids = false;
 --
 -- Name: alumno_tbl; Type: TABLE; Schema: public; Owner: postgres
 --
+CREATE SEQUENCE public.alumno_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.alumno_id_seq OWNER TO postgres;
+
 
 CREATE TABLE public.alumno_tbl (
-    id integer DEFAULT nextval('alumno_id_seq'::regclass) NOT NULL,
+    id integer DEFAULT nextval('public.alumno_id_seq'::regclass) NOT NULL,
     name character varying(30) NOT NULL,
     lastname character varying(30) NOT NULL,
     dni integer NOT NULL,
@@ -63,7 +74,16 @@ ALTER TABLE public.alumno_tbl OWNER TO postgres;
 -- Name: alumno_tbl_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.alumno_id_seq
+--
+-- Name: alumno_tbl_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+
+--
+-- Name: comprobante_tbl; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.comprobante_id_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -72,21 +92,10 @@ CREATE SEQUENCE public.alumno_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.alumno_id_seq OWNER TO postgres;
-
---
--- Name: alumno_tbl_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.alumno_id_seq OWNED BY public.alumno_tbl.id;
-
-
---
--- Name: comprobante_tbl; Type: TABLE; Schema: public; Owner: postgres
---
+ALTER TABLE public.comprobante_id_seq OWNER TO postgres;
 
 CREATE TABLE public.comprobante_tbl (
-    id integer DEFAULT nextval('comprobante_id_seq'::regclass) NOT NULL,
+    id integer DEFAULT nextval('public.comprobante_id_seq'::regclass) NOT NULL,
     legajo integer NOT NULL,
     concept text NOT NULL,
     unit_amount numeric NOT NULL,
@@ -105,39 +114,13 @@ ALTER TABLE public.comprobante_tbl OWNER TO postgres;
 -- Name: comprobante_tbl_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.comprobante_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.comprobante_id_seq OWNER TO postgres;
 
 --
 -- Name: comprobante_tbl_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.comprobante_id_seq OWNED BY public.comprobante_tbl.id;
-
-
 --
 -- Name: config_tbl; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.config_tbl (
-    id integer DEFAULT nextval('config_id_seq'::regclass) NOT NULL,
-    valorcuota integer,
-    cuenta integer
-);
-
-
-ALTER TABLE public.config_tbl OWNER TO postgres;
-
---
--- Name: config_tbl_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.config_id_seq
@@ -151,11 +134,24 @@ CREATE SEQUENCE public.config_id_seq
 
 ALTER TABLE public.config_id_seq OWNER TO postgres;
 
+
+CREATE TABLE public.config_tbl (
+    id integer DEFAULT nextval('public.config_id_seq'::regclass) NOT NULL,
+    valorcuota integer,
+    cuenta integer
+);
+
+
+ALTER TABLE public.config_tbl OWNER TO postgres;
+
+--
+-- Name: config_tbl_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+
 --
 -- Name: config_tbl_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
-
-ALTER SEQUENCE public.config_id_seq OWNED BY public.config_tbl.id;
 
 
 --
@@ -190,46 +186,6 @@ ALTER TABLE public.user_tbl OWNER TO postgres;
 --
 -- Name: alumno_tbl id; Type: DEFAULT; Schema: public; Owner: postgres
 --
-
-ALTER TABLE ONLY public.alumno_tbl ALTER COLUMN id SET DEFAULT nextval('public.alumno_id_seq'::regclass);
-
-
---
--- Name: comprobante_tbl id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.comprobante_tbl ALTER COLUMN id SET DEFAULT nextval('public.comprobante_id_seq'::regclass);
-
-
---
--- Name: config_tbl id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.config_tbl ALTER COLUMN id SET DEFAULT nextval('public.config_id_seq'::regclass);
-
-
---
--- Name: alumno_tbl alumno_tbl_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.alumno_tbl
-    ADD CONSTRAINT alumno_tbl_pkey PRIMARY KEY (id);
-
-
---
--- Name: comprobante_tbl comprobante_tbl_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.comprobante_tbl
-    ADD CONSTRAINT comprobante_tbl_pkey PRIMARY KEY (id);
-
-
---
--- Name: config_tbl config_tbl_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.config_tbl
-    ADD CONSTRAINT config_tbl_pkey PRIMARY KEY (id);
 
 
 --
